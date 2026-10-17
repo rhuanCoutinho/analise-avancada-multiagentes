@@ -1,0 +1,29 @@
+# Ambientes locais de Python
+.venv/
+venv/
+
+# Cache e arquivos compilados
+__pycache__/
+*.py[cod]
+
+# Arquivos locais do editor/sistema e variáveis privadas
+.vscode/
+.idea/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Rascunhos e imagens geradas durante análises
+.ipynb_checkpoints/
+*.ipynb
+categorias.png
+cidades.png
+
+# Dentro de relatorios/, manter apenas .md (incluindo subpastas rodada-*)
+projeto-dashboard/relatorios/*
+!projeto-dashboard/relatorios/*.md
+!projeto-dashboard/relatorios/rodada-*/
+projeto-dashboard/relatorios/rodada-*/*
+!projeto-dashboard/relatorios/rodada-*/*.md

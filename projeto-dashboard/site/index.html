@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7f4">
+    <title>Vendas da papelaria | Dashboard</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Dashboard da papelaria, início">
+        <span class="brand-mark" aria-hidden="true">P</span>
+        <span>Papelaria <span class="brand-light">· visão de vendas</span></span>
+      </a>
+      <span class="source-note">Fonte: base limpa · 1º tri de 2026</span>
+    </header>
+
+    <main id="conteudo" class="page-shell">
+      <section class="intro" id="inicio" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">PAINEL DE DESEMPENHO</p>
+          <h1 id="page-title">Vendas em foco</h1>
+          <p class="intro-copy">Acompanhe o valor vendido por cidade e categoria. Use os filtros para explorar a base.</p>
+        </div>
+        <p class="updated"><span class="status-dot" aria-hidden="true"></span>Dados preparados localmente</p>
+      </section>
+
+      <section class="filter-panel" aria-labelledby="filter-title">
+        <div class="filter-heading">
+          <div>
+            <h2 id="filter-title">Filtros</h2>
+            <p>Os indicadores, gráficos e a tabela acompanham sua seleção.</p>
+          </div>
+          <button id="clear-filters" class="button-quiet" type="button">Limpar filtros</button>
+        </div>
+        <div class="filter-controls">
+          <div class="field">
+            <label for="filter-city">Cidade</label>
+            <select id="filter-city" name="cidade">
+              <option value="">Todas as cidades</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="filter-category">Categoria</label>
+            <select id="filter-category" name="categoria">
+              <option value="">Todas as categorias</option>
+            </select>
+          </div>
+          <p class="results-count" id="results-count" aria-live="polite">Carregando vendas…</p>
+        </div>
+      </section>
+
+      <section class="kpi-grid" aria-label="Indicadores de vendas">
+        <article class="kpi-card kpi-primary">
+          <p class="kpi-label">Valor total vendido</p>
+          <p class="kpi-value" id="kpi-total">—</p>
+          <p class="kpi-footnote">Soma do valor das vendas selecionadas</p>
+        </article>
+        <article class="kpi-card">
+          <p class="kpi-label">Quantidade de vendas</p>
+          <p class="kpi-value" id="kpi-count">—</p>
+          <p class="kpi-footnote">Uma venda corresponde a uma linha válida</p>
+        </article>
+        <article class="kpi-card">
+          <p class="kpi-label">Ticket médio</p>
+          <p class="kpi-value" id="kpi-average">—</p>
+          <p class="kpi-footnote">Valor total vendido ÷ número de vendas</p>
+        </article>
+      </section>
+
+      <section class="chart-grid" aria-label="Gráficos de valor vendido">
+        <article class="panel chart-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">COMPOSIÇÃO</p>
+              <h2>Valor vendido por categoria</h2>
+            </div>
+            <span class="chart-icon" aria-hidden="true">▥</span>
+          </div>
+          <div id="category-chart" class="bar-chart" aria-label="Gráfico de barras por categoria"></div>
+        </article>
+        <article class="panel chart-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">DISTRIBUIÇÃO</p>
+              <h2>Valor vendido por cidade</h2>
+            </div>
+            <span class="chart-icon chart-icon-alt" aria-hidden="true">▥</span>
+          </div>
+          <div id="city-chart" class="bar-chart" aria-label="Gráfico de barras por cidade"></div>
+        </article>
+      </section>
+
+      <section class="panel table-panel" aria-labelledby="table-title">
+        <div class="panel-heading table-heading">
+          <div>
+            <p class="eyebrow">DETALHAMENTO</p>
+            <h2 id="table-title">Vendas selecionadas</h2>
+          </div>
+          <span class="table-caption">Valores em reais (R$)</span>
+        </div>
+        <div class="table-scroll" role="region" aria-label="Tabela de vendas; role horizontalmente em telas pequenas" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Venda</th>
+                <th scope="col">Data</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Produto</th>
+                <th scope="col" class="numeric">Unid.</th>
+                <th scope="col" class="numeric">Preço unitário</th>
+                <th scope="col" class="numeric">Valor vendido</th>
+              </tr>
+            </thead>
+            <tbody id="sales-table-body">
+              <tr><td colspan="8" class="table-message">Carregando dados…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <p id="load-error" class="error-message" role="alert" hidden></p>
+      <footer class="page-footer">
+        <p><strong>Como ler:</strong> valor vendido é o valor bruto registrado nas vendas; não representa lucro.</p>
+        <p>Base: <code>papelaria_limpa.csv</code> · painel estático, sem conexão externa.</p>
+      </footer>
+    </main>
+  </body>
+</html>
